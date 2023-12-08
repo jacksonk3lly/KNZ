@@ -1,0 +1,46 @@
+h1 {
+  font-size: 52px;
+}
+h2 {
+  font-size: 30px;
+}
+
+canvas {
+  position: "fixed";
+  top: "0";
+  left: "0";
+  z-index: "9999999999";
+}
+
+body {
+  background-color: blue;
+}
+
+.left.h1 {
+  color: black;
+  text-shadow: green, -10px, 10px;
+}
+
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  top: 0;
+}
+
+.left {
+  left: 0;
+  background-color: red;
+}
+
+.right {
+  right: 0;
+  background-color: green;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
