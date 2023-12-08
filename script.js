@@ -4,8 +4,22 @@ const Kweather = document.querySelector(".K-weather");
 const NZweather = document.querySelector(".NZ-weather");
 const Ktemp = document.querySelector(".K-temp");
 const NZtemp = document.querySelector(".NZ-temp");
+const topTime = document.querySelector(".top-time-label");
 
 
+var countDownDate = new Date("jan 30, 2024 07:40:00").getTime();
+setInterval(()=>{
+  var now = new Date().getTime();
+  var timeleft = countDownDate - now;
+      
+  var days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
+  topTime.innerHTML = days + "days " + hours +" hours "+minutes+ " minutes "+ seconds +" seconds";
+
+
+},1000);
 
 
 setNZT();
@@ -45,6 +59,5 @@ async function fetchData() {
   }
 }
 
+
 fetchData();
-
-

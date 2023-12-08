@@ -53,7 +53,7 @@ function toggleUFO(){
         UFOtog = false   
     }else{
         canvas.style.display = "";
-        //cSPKcanvas.style.display = "";
+        SPKcanvas.style.display = "";
         c.clearRect(0,0,canvas.width,canvas.height);
         s.clearRect(0,0,canvas.width,canvas.height);
 
