@@ -7,7 +7,7 @@ const NZtemp = document.querySelector(".NZ-temp");
 const topTime = document.querySelector(".top-time-label");
 
 
-var countDownDate = new Date("jan 30, 2024 07:40:00").getTime();
+var countDownDate = new Date("jun 25, 2024 11:25:00").getTime();
 setInterval(()=>{
   var now = new Date().getTime();
   var timeleft = countDownDate - now;
@@ -48,7 +48,7 @@ async function fetchData() {
       Ktemp.innerHTML =(Kdata.main.temp-273.15).toFixed(2)+" degrees";
 
 
-      const NZresponse = await fetch("https://api.openweathermap.org/data/2.5/weather?q=Waikanae,NZ&appid=c72c9fec85804dd470fe2798cbe68933");
+      const NZresponse = await fetch("https://api.openweathermap.org/data/2.5/weather?q=Dunedin,NZ&appid=c72c9fec85804dd470fe2798cbe68933");
       const NZdata = await NZresponse.json();
 
       NZweather.innerHTML =NZdata.weather[0].description;
