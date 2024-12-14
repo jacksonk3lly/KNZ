@@ -7,7 +7,7 @@ const NZtemp = document.querySelector(".NZ-temp");
 const topTime = document.querySelector(".top-time-label");
 
 
-var countDownDate = new Date("jun 25, 2024 11:25:00").getTime();
+var countDownDate = new Date("feb 15, 2025 11:25:00").getTime();
 setInterval(()=>{
   var now = new Date().getTime();
   var timeleft = countDownDate - now;
