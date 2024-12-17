@@ -2,7 +2,7 @@ body,
 html {
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to right, yellow, green);
+  background: linear-gradient(to right, yellow 50%, green 50%);
 }
 
 .top-time {
@@ -14,11 +14,32 @@ html {
 }
 
 .top-time h2 {
-  color: #333;
-  font-size: 24px;
+  color: black;
+}
+
+h1 {
+  color: black;
+  font-size: 2.5rem;
 }
 
 .top-time .countdown {
   font-size: 20px;
   color: #555;
+}
+
+.locations {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+.split {
+  display: flex;
+  margin: 0 10px;
+  width: 50%;
+  justify-content: center;
+}
+
+.centered {
+  flex-direction: column;
 }
