@@ -29,5 +29,8 @@ async function uploadImage() {
 }
 
 const uploadButton = document.getElementById("uploadButton");
-uploadButton.addEventListener("click", uploadImage);
+uploadButton.addEventListener("click", () => {
+  uploadImage();
+  retiriveImage();
+});
 retiriveImage();
