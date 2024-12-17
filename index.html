@@ -1,99 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <script defer src="script.js"></script>
+    <!-- <script defer src="ufo.js"></script> -->
 
-<head>
-  <script defer src="script.js"></script>
-  <!-- <script defer src="ufo.js"></script> -->
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-  <link rel="stylesheet" href="style.css" />
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-</head>
+  <body>
+    <div id="flex-container">
+      <div id="data">
+        <div class="top-time">
+          <h2>Time Untill Sunny and Jackson are Together Again!</h2>
+          <h2 class="top-time-label">.</h2>
+        </div>
 
-<body>
-  <div class="top-time">
-    <h2>Time Untill Sunny and Jackson are Together Again!</h2>
-    <h2 class="top-time-label">.</h2>
-  </div>
+        <div class="container">
+          <div class="split left">
+            <div class="centered">
+              <h1>New Zealand</h1>
+              <h2>Dunedin</h2>
 
-  <canvas class="sparkles"></canvas>
-  <canvas class="ufo"></canvas>
+              <h2 class="NZ-time"></h2>
+              <h2 class="NZ-weather"></h2>
+              <h2 class="NZ-temp"></h2>
+            </div>
+          </div>
+          <div class="split right">
+            <div class="centered">
+              <h1>KOREA</h1>
+              <h2>Seoul</h2>
 
-  <div class="container">
-    <div class="split left">
-      <div class="centered">
-        <h1>New Zealand</h1>
-        <h2>Dunedin</h2>
-
-        <h2 class="NZ-time"></h2>
-        <h2 class="NZ-weather"></h2>
-        <h2 class="NZ-temp"></h2>
+              <h2 class="K-time"></h2>
+              <h2 class="K-weather"></h2>
+              <h2 class="K-temp"></h2>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <section id="upload">
+        <img id="imagePreview" src="" alt="" />
+        <h6>Choose File</h6>
+        <input type="file" id="fileInput" name="file" />
+        <button id="uploadButton">Upload</button>
+        <h6>File URL:</h6>
+        <span id="linkbox"></span>
+      </section>
     </div>
-    <div class="split right">
-      <div class="centered">
-        <h1>KOREA</h1>
-        <h2>Seoul</h2>
-
-        <h2 class="K-time"></h2>
-        <h2 class="K-weather"></h2>
-        <h2 class="K-temp"></h2>
-      </div>
-    </div>
-    <section id="imageGallery"></section>
-  </div>
-
-  <script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
-    import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-storage.js";
-
-
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
-      apiKey: "AIzaSyDPVvy12T1WfEkpNeJx-rkyHgFS8_IBR5o",
-      authDomain: "knz-backend.firebaseapp.com",
-      projectId: "knz-backend",
-      storageBucket: "knz-backend.firebasestorage.app",
-      messagingSenderId: "134399990818",
-      appId: "1:134399990818:web:c1edde95d03b479e077e7b",
-      measurementId: "G-0Y5SDT9W8X"
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const storage = getStorage();
-
-    const storageRef = ref(storage, 'images/');
-
-    listAll(storageRef).then((res) => {
-      res.items.forEach((itemRef) => {
-        getDownloadURL(itemRef)
-          .then((url) => {
-            const imgElement = document.createElement('img');
-            imgElement.src = url;
-            imgElement.alt = 'Firebase Image';
-            imgElement.style.width = '200px'; // Set image size (optional)
-            imgElement.style.margin = '10px';
-            document.getElementById('imageGallery').appendChile(imgElement);
-          })
-          .catch((error) => {
-            console.error('Error fetching image URL', error);
-          });
-      });
-    })
-      .catch((error) => {
-        console.error('Error listing files :', error);
-
-      });
-  </script>
-
-</body>
-
+    <script type="module" src="main.js"></script>
+  </body>
 </html>
