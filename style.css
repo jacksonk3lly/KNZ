@@ -1,134 +1,202 @@
-h1 {
-  font-size: 3rem;
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
+
+h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  color: #1a1a1a;
+}
+
 h2 {
-  font-size: 2.3rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 5px 0;
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: 400;
+  opacity: 0.7;
+  margin: 0 0 10px 0;
 }
 
 .top-time-label {
-  font-size: 1.9rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ff4757;
+  letter-spacing: -0.5px;
 }
 
-html {
-  width: 100vw;
+html, body {
+  width: 100%;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
-  background: linear-gradient(#d1b38c, #bddec8, #79c2c1, #31b2c8);
-  /* overflow: hidden; */
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #1a1a1a;
+  transition: background 2s ease-in-out;
+  background-attachment: fixed;
 }
 
-body {
-  width: 100%;
-  margin: 0;
-  padding: 0;
+/* Morning: Soft pinks and oranges */
+body.bg-morning {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
 }
 
-flex-container {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  gap: 10px;
-  width: 100%;
+/* Day: Bright blues and yellows */
+body.bg-day {
+  background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
 }
 
-#data {
-  display: block;
-  flex-direction: column;
-  /* height: 10rem; */
+/* Evening: Deep purples and oranges */
+body.bg-evening {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
 }
 
-#upload {
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-  align-items: center;
-  margin-top: 0;
-  justify-content: center;
+/* Night: Dark blues and purples */
+body.bg-night {
+  background: linear-gradient(135deg, #243949 0%, #517fa4 100%);
+  color: #ffffff;
 }
 
-#imagePreview {
-  border: 10px solid #937d4be5;
-  /* padding: 10px; */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  margin-top: 3rem;
-  width: 70%;
-}
-
-button {
-  background-color: #937d4be5;
+body.bg-night .top-time, 
+body.bg-night .split, 
+body.bg-night #upload {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  width: 100%;
 }
 
-input {
-  background-color: #937d4be5;
+body.bg-night h1, body.bg-night h2, body.bg-night h3 {
   color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
 }
 
-#controls {
-  margin: 1rem;
-  text-size-adjust: 5rem;
+body.bg-night .NZ-temp, body.bg-night .K-temp {
+  background: rgba(255,255,255,0.1);
+}
+
+#flex-container {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  padding: 20px;
+  gap: 20px;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .top-time {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1rem;
-  align-items: center;
-  flex-direction: column;
-  position: relative;
-  width: 100%;
-  z-index: 900;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  padding: 25px 20px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
   text-align: center;
-}
-
-.left.h1 {
-  color: black;
+  margin-top: 10px;
 }
 
 .container {
-  position: relative;
   display: flex;
-  flex-direction: row;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  height: 70vh;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .split {
-  height: 30%;
-  width: 50%;
-  position: relative;
-  top: 0;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.2s ease;
 }
 
-.left {
-  left: 0;
-}
-
-.right {
-  right: 0;
+.split:active {
+  transform: scale(0.98);
 }
 
 .centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.NZ-time, .K-time {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.NZ-temp, .K-temp {
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: rgba(0,0,0,0.05);
+  padding: 4px 12px;
+  border-radius: 12px;
+  margin-top: 5px;
+}
+
+.NZ-weather, .K-weather {
+  text-transform: capitalize;
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+#upload {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+#imagePreview {
+  width: 100%;
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+#controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+input[type="file"] {
+  background: rgba(255,255,255,0.5);
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 0.9rem;
+}
+
+button {
+  background: #1a1a1a;
+  color: white;
+  border: none;
+  border-radius: 16px;
+  padding: 16px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+button:active {
+  opacity: 0.8;
+}
+
+/* UFO and Sparkles setup */
+.ufo, .sparkles {
+  pointer-events: none; /* Let clicks pass through to the UI */
 }

@@ -1,0 +1,26 @@
+{
+  "name": "knz",
+  "version": "1.0.0",
+  "description": "Check out the site at",
+  "main": "main.js",
+  "scripts": {
+    "start": "vite --host",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacksonk3lly/KNZ.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jacksonk3lly/KNZ/issues"
+  },
+  "homepage": "https://github.com/jacksonk3lly/KNZ#readme",
+  "devDependencies": {
+    "vite": "^7.3.1"
+  }
+}

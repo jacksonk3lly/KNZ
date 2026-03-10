@@ -1,53 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script defer src="script.js"></script>
-    <!-- <script defer src="ufo.js"></script> -->
-
-    <link rel="stylesheet" href="style.css" />
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>S & J Together</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+    <script defer src="ufo.js"></script>
   </head>
 
   <body>
     <div id="flex-container">
-      <div id="data">
-        <div class="top-time">
-          <h1>Time Untill Sunny and Jackson are Together Again!</h2>
-          <h2 class="top-time-label">THE TIME</h2>
+      <div class="top-time">
+        <h1>Sunny & Jackson ❤️</h1>
+        <div class="top-time-label">Calculating...</div>
+      </div>
+
+      <div class="container">
+        <!-- New Zealand Section -->
+        <div class="split">
+          <div class="centered">
+            <h3>Dunedin, NZ</h3>
+            <div class="NZ-time">--:--</div>
+            <div class="NZ-weather">Fetching...</div>
+            <div class="NZ-temp">--°C</div>
+          </div>
         </div>
 
-        <div class="container">
-          <div class="split left">
-            <div class="centered">
-              <h2>New Zealand</h2>
-              <h3>Dunedin</h3>
-
-              <h2 class="NZ-time">Time</h2>
-              <h2 class="NZ-weather">Weather</h2>
-              <h2 class="NZ-temp">Temp</h2>
-            </div>
-          </div>
-          <div class="split right">
-            <div class="centered">
-              <h2>KOREA</h2>
-              <h3>Seoul</h3>
-
-              <h2 class="K-time">Time</h2>
-              <h2 class="K-weather">Weather</h2>
-              <h2 class="K-temp">Temp</h2>
-            </div>
+        <!-- Korea Section -->
+        <div class="split">
+          <div class="centered">
+            <h3>Seoul, Korea</h3>
+            <div class="K-time">--:--</div>
+            <div class="K-weather">Fetching...</div>
+            <div class="K-temp">--°C</div>
           </div>
         </div>
       </div>
 
+      <!-- Upload Section -->
       <section id="upload">
-        <img id="imagePreview" src="" alt="" />
-        <span id="controls">
+        <div id="image-container">
+          <img id="imagePreview" src="538c57ae8cd0e2146ef5bd9d318cd128.jpg" alt="Together" />
+        </div>
+        <div id="controls">
           <input type="file" id="fileInput" name="file" />
-          <button id="uploadButton">Upload</button>
-        </span>
+          <button id="uploadButton">Update Photo</button>
+        </div>
       </section>
     </div>
     <script type="module" src="main.js"></script>
