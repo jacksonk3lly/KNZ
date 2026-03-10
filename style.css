@@ -41,6 +41,7 @@ html, body {
   color: #1a1a1a;
   transition: background 2s ease-in-out;
   background-attachment: fixed;
+  position: relative;
 }
 
 /* Morning: Soft pinks and oranges */
@@ -227,5 +228,14 @@ button:active {
 
 /* UFO and Sparkles setup */
 .ufo, .sparkles {
-  pointer-events: none; /* Let clicks pass through to the UI */
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none; 
+  z-index: 9999;
+}
+
+.sparkles {
+  z-index: 9998;
 }

@@ -22,9 +22,9 @@ function initUFO() {
   let targetX = x;
   let targetY = y;
   let sinval = 0;
-  let hue = 0; // Track the current color for the rainbow
+  let hue = 0;
+  let lastScrollY = window.scrollY;
 
-  // Trail/Particle System
   const particles = [];
   const sparkleimg = new Image();
   sparkleimg.src = "sparkle.png";
@@ -32,24 +32,17 @@ function initUFO() {
   const ufoimg = new Image();
   ufoimg.src = "UFO.gif";
 
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  canvas.style.position = "fixed";
-  canvas.style.top = "0";
-  canvas.style.left = "0";
-  canvas.style.zIndex = "9999";
-  canvas.style.pointerEvents = "none";
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = Math.max(document.body.scrollHeight, window.innerHeight);
+    SPKcanvas.width = window.innerWidth;
+    SPKcanvas.height = Math.max(document.body.scrollHeight, window.innerHeight);
+  }
 
-  SPKcanvas.width = window.innerWidth;
-  SPKcanvas.height = window.innerHeight;
-  SPKcanvas.style.position = "fixed";
-  SPKcanvas.style.top = "0";
-  SPKcanvas.style.left = "0";
-  SPKcanvas.style.zIndex = "9998";
-  SPKcanvas.style.pointerEvents = "none";
+  resize();
 
   function createParticle(px, py) {
-    hue = (hue + 10) % 360; // Shift the color for the next particle
+    hue = (hue + 10) % 360;
     particles.push({
       x: px,
       y: py,
@@ -62,14 +55,19 @@ function initUFO() {
   }
 
   function animate() {
-    // Slower movement (0.05)
+    // Track scroll changes to keep particles "pinned"
+    const currentScrollY = window.scrollY;
+    const scrollDelta = currentScrollY - lastScrollY;
+    lastScrollY = currentScrollY;
+
+    // Movement toward target (slower 0.05)
     x += (targetX - x) * 0.05;
     y += (targetY - y) * 0.05;
 
     sinval += 0.05;
     const hoverY = y + Math.sin(sinval) * 10;
 
-    // Create a new sparkle frequently for a dense trail
+    // Create a new sparkle frequently
     if (Math.random() > 0.5) {
       createParticle(x - 10 + (Math.random() * 20 - 10), hoverY + 30 + (Math.random() * 10));
     }
@@ -77,12 +75,12 @@ function initUFO() {
     c.clearRect(0, 0, canvas.width, canvas.height);
     s.clearRect(0, 0, SPKcanvas.width, SPKcanvas.height);
 
-    // Update and draw sparkles with Rainbow effect
+    // Update and draw sparkles
     for (let i = particles.length - 1; i >= 0; i--) {
       const p = particles[i];
-      p.life -= 0.008; // Slower fade speed (was 0.015)
+      p.life -= 0.008; 
       p.opacity = p.life;
-      p.size -= 0.05; // Shrink slower (was 0.1)
+      p.size -= 0.05;
 
       if (p.life <= 0) {
         particles.splice(i, 1);
@@ -91,7 +89,6 @@ function initUFO() {
 
       s.save();
       s.globalAlpha = p.opacity;
-      // Apply the rainbow color shift
       s.filter = `hue-rotate(${p.hue}deg) brightness(1.2)`;
       s.translate(p.x, p.y);
       s.rotate(p.rotation);
@@ -99,35 +96,30 @@ function initUFO() {
       s.restore();
     }
     
-    // Draw UFO
     c.drawImage(ufoimg, x - 40, hoverY - 40, 80, 80);
-
     requestAnimationFrame(animate);
   }
 
   ufoimg.onload = () => animate();
 
   window.addEventListener("touchstart", (e) => {
-      targetX = e.touches[0].clientX;
-      targetY = e.touches[0].clientY;
+      targetX = e.touches[0].pageX;
+      targetY = e.touches[0].pageY;
   }, { passive: true });
 
   window.addEventListener("touchmove", (e) => {
-      targetX = e.touches[0].clientX;
-      targetY = e.touches[0].clientY;
+      targetX = e.touches[0].pageX;
+      targetY = e.touches[0].pageY;
   }, { passive: true });
 
   window.addEventListener("mousemove", (e) => {
-      targetX = e.clientX;
-      targetY = e.clientY;
+      targetX = e.pageX;
+      targetY = e.pageY;
   });
 
-  window.addEventListener("resize", function () {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    SPKcanvas.width = window.innerWidth;
-    SPKcanvas.height = window.innerHeight;
-  });
+  window.addEventListener("resize", resize);
+  window.addEventListener("load", resize);
+  setInterval(resize, 2000);
 }
 
 if (document.readyState === 'loading') {
