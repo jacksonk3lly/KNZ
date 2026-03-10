@@ -11,26 +11,41 @@ import { firebaseConfig } from "./config.js";
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 const imagePreview = document.getElementById("imagePreview");
+const fileInput = document.getElementById("fileInput");
 
-async function retiriveImage() {
-  const storageRef = ref(storage, `images/framephoto`);
-  const imageURL = await getDownloadURL(storageRef);
-  imagePreview.src = imageURL;
-}
-
-async function uploadImage() {
-  const fileInput = document.getElementById("fileInput");
-  const file = fileInput.files[0];
-
-  if (file) {
+async function retrieveImage() {
+  try {
     const storageRef = ref(storage, `images/framephoto`);
-    await uploadBytes(storageRef, file);
+    const imageURL = await getDownloadURL(storageRef);
+    imagePreview.src = imageURL;
+  } catch (error) {
+    console.log("No remote image found yet, using default.");
   }
 }
 
-const uploadButton = document.getElementById("uploadButton");
-uploadButton.addEventListener("click", () => {
-  uploadImage();
-  retiriveImage();
-});
-retiriveImage();
+async function handleFileUpload(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  // 1. Instant Preview (Local)
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    imagePreview.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+
+  // 2. Automatic Upload to Firebase
+  try {
+    const storageRef = ref(storage, `images/framephoto`);
+    await uploadBytes(storageRef, file);
+    console.log("Uploaded successfully!");
+  } catch (error) {
+    console.error("Upload failed:", error);
+  }
+}
+
+// Listen for file selection
+fileInput.addEventListener("change", handleFileUpload);
+
+// Initial load
+retrieveImage();
